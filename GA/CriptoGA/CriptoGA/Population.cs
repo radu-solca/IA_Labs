@@ -14,20 +14,7 @@ namespace CriptoGA
             Individuals = new List<List<char>>();
             for (int i = 0; i < noOfIndividuals; i++)
             {
-                Random rng = new Random(Guid.NewGuid().GetHashCode());
-                Individuals.Add(Service.GetRandomEncryption(rng));
-            }
-        }
-
-        private List<int> fitnessScores;
-
-        private void ComputeFitness()
-        {
-            fitnessScores = new List<int>();
-
-            foreach (var individual in Individuals)
-            {
-                
+                Individuals.Add(Service.GetRandomEncryption());
             }
         }
     }

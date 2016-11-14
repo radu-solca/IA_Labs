@@ -30,7 +30,7 @@ namespace CriptoGA
             /*end sample sentence*/
 
             /*setup random encryption*/
-            _encryption = Service.GetRandomEncryption(new Random());
+            _encryption = Service.GetRandomEncryption();
             /*end random encryption*/
 
             /*encrypt sentence*/
@@ -39,39 +39,92 @@ namespace CriptoGA
         }
         static void Main(string[] args)
         {
-            Setup();    
+            Setup();
+
+            //List<char> dick = new List<char> { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h' };
+            //List<char> ass = new List<char> { 'd', 'c', 'h', 'b', 'f', 'e', 'g', 'a' };
+
+            //Service.Crossover(dick, ass);
+            //Console.Write('\n'); Console.Write('\n'); Console.Write('\n'); Console.Write('\n'); Console.Write('\n');
+            //foreach (var character in dick)
+            //{
+            //    Console.Write(character);
+            //}
+
+            //Console.Write('\n');
+
+            //foreach (var character in ass)
+            //{
+            //    Console.Write(character);
+            //}
+            //Console.Write('\n');
+
+            //Population pop = new Population(100);
+
+            //while (true)
+            //{
+            //    WriteStuff(pop, new List<int>());
+            //    List<int> fitness = Service.Evaluate(pop, _dictionary, _encryptedSentence);
+            //    pop = Service.RouletteSelect(pop, fitness);
+
+            //    Service.ApplyCrossover(pop, 1);
+
+            //    WriteStuff(pop, new List<int>());
+            //}
+
             
-            
-            Console.WriteLine(_dictionary.Count());
-            Console.WriteLine(_sentence);
-            Console.WriteLine(_encryptedSentence);
-            foreach (var character in _encryption)
-            {
-                Console.Write(character);
-            }
-            Console.Write("\n");
+
 
             GA();
-
         }
 
-        private static void GA(){
-            Population pop = new Population(100);
 
+        private static void WriteStuff(Population pop, List<int> fitness )
+        {
             foreach (var individual in pop.Individuals)
             {
                 foreach (var character in individual)
                 {
                     Console.Write(character);
                 }
-                Console.Write("\n");
+
+                Console.Write("\t");
             }
 
-	        while (true){
-                //applySelect(pop, fit);
-                //applyCrossover(pop, probCross);
-                //applyMutate(pop, probMut);
-                //fit = evalPop(pop, fitness, paramNumber, range, precision);
+            Console.Write("\n\n");
+
+            foreach (var f in fitness)
+            {
+                Console.Write(f);
+
+                Console.Write('\t');
+            }
+
+            Console.Write("\n\n");
+        }
+
+        private static void GA(){
+            Population pop = new Population(13);
+            List<int> fitness = Service.Evaluate(pop, _dictionary, _encryptedSentence);
+
+            
+
+            while (true){
+                pop = Service.RouletteSelect(pop, fitness);
+
+                WriteStuff(pop, fitness);
+
+                //Service.ApplyCrossover(pop, 1);
+
+                
+
+                Service.applyMutate(pop, 0.3);
+
+                fitness = Service.Evaluate(pop, _dictionary, _encryptedSentence);
+
+                WriteStuff(pop, fitness);
+
+                Console.Write("\n\n\n\n");
             }
         }
     }
