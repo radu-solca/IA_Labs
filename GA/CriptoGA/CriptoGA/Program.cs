@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Xml.Serialization;
 using rm.Trie;
 
 namespace CriptoGA
@@ -79,52 +80,70 @@ namespace CriptoGA
         }
 
 
-        private static void WriteStuff(Population pop, List<int> fitness )
+        private static void WriteStuff(Population pop, List<int> fitness, int generation )
         {
-            foreach (var individual in pop.Individuals)
+            //foreach (var individual in pop.Individuals)
+            //{
+            //    foreach (var character in individual)
+            //    {
+            //        Console.Write(character);
+            //    }
+
+            //    Console.Write("\t");
+            //}
+
+            //Console.Write("\n\n");
+
+            //foreach (var f in fitness)
+            //{
+            //    Console.Write(f);
+
+            //    Console.Write('\t');
+            //}
+
+            //Console.Write("\n\n");
+            int maxFitness = 0;
+            List<char> bestIndividual = new List<char>();
+            for (int i = 0; i < fitness.Count; i++)
             {
-                foreach (var character in individual)
+                if (fitness[i] > maxFitness)
                 {
-                    Console.Write(character);
+                    maxFitness = fitness[i];
+                    bestIndividual = pop.Individuals[i];
                 }
-
-                Console.Write("\t");
             }
 
-            Console.Write("\n\n");
-
-            foreach (var f in fitness)
+            Console.WriteLine("\n\nGeneration " + generation);
+            Console.WriteLine("Best fitness is " + maxFitness);
+            Console.Write("Best decryption is ");
+            foreach (var character in Service.Encrypt(_encryptedSentence,bestIndividual))
             {
-                Console.Write(f);
-
-                Console.Write('\t');
+                Console.Write(character);
             }
-
-            Console.Write("\n\n");
+            Console.Write("\n");
         }
 
         private static void GA(){
             Population pop = new Population(13);
             List<int> fitness = Service.Evaluate(pop, _dictionary, _encryptedSentence);
 
-            
 
-            while (true){
+            int generation = 1;
+            while (generation <= 10000){
+
                 pop = Service.RouletteSelect(pop, fitness);
 
-                WriteStuff(pop, fitness);
-
-                //Service.ApplyCrossover(pop, 1);
-
+                //Service.ApplyCrossover(pop, 0.8); //Sometimes infinite loop, others error.
                 
-
                 Service.applyMutate(pop, 0.3);
 
                 fitness = Service.Evaluate(pop, _dictionary, _encryptedSentence);
 
-                WriteStuff(pop, fitness);
+                WriteStuff(pop, fitness, generation);
 
                 Console.Write("\n\n\n\n");
+
+                generation++;
             }
         }
     }
