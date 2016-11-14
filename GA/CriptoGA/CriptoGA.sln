@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CriptoGA", "CriptoGA\CriptoGA.csproj", "{0FEE8A70-B316-4F6B-9924-D4E3F290DE5A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rm.Trie", "..\csharp-trie-master\rm.Trie\rm.Trie.csproj", "{9610867E-7D5E-420A-9D9A-436201400A99}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A2CA557B-BA3A-41D1-8067-DBDF4F1272D1}"
+	ProjectSection(SolutionItems) = preProject
+		SampleText.txt = SampleText.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0FEE8A70-B316-4F6B-9924-D4E3F290DE5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FEE8A70-B316-4F6B-9924-D4E3F290DE5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FEE8A70-B316-4F6B-9924-D4E3F290DE5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FEE8A70-B316-4F6B-9924-D4E3F290DE5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9610867E-7D5E-420A-9D9A-436201400A99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9610867E-7D5E-420A-9D9A-436201400A99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9610867E-7D5E-420A-9D9A-436201400A99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9610867E-7D5E-420A-9D9A-436201400A99}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
